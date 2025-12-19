@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mein Lebenslauf – Lion Krasniqi</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --white: #ffffff;
+      --black: #000000;
+      --blue: #1e40ff;
+      --violet: #2b0a3d;
+      --glass: rgba(0,0,0,0.55);
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter',sans-serif; scroll-behavior: smooth; }
+    body { background: linear-gradient(180deg, var(--white), #f4f4f4); color: var(--black); overflow-x: hidden; }
+    body.dark { background: linear-gradient(180deg,#0b0b0f,#111); color: var(--white); }
+    body.dark .card { background: #141414; color: var(--white); }
+    body.dark h2 { color: #8b5cf6; }
+    body.dark .hero-text p { color: #ccc; }
+
+    nav { position: fixed; top:0; width:100%; z-index:1000; background: var(--glass); backdrop-filter: blur(14px); border-bottom:1px solid rgba(255,255,255,0.15); }
+    .nav-container { max-width:1200px; margin:auto; padding:1rem 2rem; display:flex; justify-content:space-between; align-items:center; }
+    .logo { color:white; font-weight:700; font-size:1.2rem; }
+    .nav-links { display:flex; gap:2rem; }
+    .nav-links a { text-decoration:none; color:var(--white); font-weight:500; position:relative; cursor:pointer; }
+    .nav-links a::after { content:''; position:absolute; left:0; bottom:-6px; width:0; height:2px; background:var(--blue); transition:width 0.3s ease; }
+    .nav-links a:hover::after { width:100%; }
+
+    .hero { min-height:100vh; display:flex; align-items:center; justify-content:center; padding:8rem 2rem 4rem; position:relative; z-index:1; }
+    .hero-content { max-width:1200px; width:100%; display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; animation: fadeUp 1.2s ease forwards; }
+    .hero-text h1 { font-size:clamp(2.5rem,5vw,4.5rem); font-weight:700; line-height:1.1; }
+    .hero-text span { color: var(--blue); }
+    .hero-text p { margin-top:1.5rem; font-size:clamp(1rem,2.5vw,1.3rem); max-width:500px; color:#444; }
+    .hero-image img { width:100%; max-width:380px; border-radius:24px; box-shadow:0 30px 60px rgba(0,0,0,0.2); animation: float 6s ease-in-out infinite; }
+
+    section { padding:6rem 2rem; max-width:1100px; margin:auto; position:relative; z-index:1; }
+    h2 { font-size:clamp(1.8rem,4vw,2.5rem); margin-bottom:2rem; color: var(--violet); }
+    .card { background: var(--white); padding:2rem; border-radius:22px; box-shadow:0 15px 40px rgba(0,0,0,0.08); margin-bottom:2rem; transition: transform 0.4s ease, box-shadow 0.4s ease; }
+    .card:hover { transform:translateY(-10px); box-shadow:0 25px 60px rgba(0,0,0,0.12); }
+
+    .zeugnis-img { width:100%; max-width:420px; border-radius:16px; box-shadow:0 15px 35px rgba(0,0,0,0.15); }
+    .zoomable { cursor: zoom-in; transition: transform 0.3s ease; }
+    .zoomable:hover { transform: scale(1.03); }
+    .lightbox { position:fixed; inset:0; background: rgba(0,0,0,0.9); display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; z-index:9999; transition: opacity 0.3s ease; }
+    .lightbox.active { opacity:1; pointer-events:all; }
+    .lightbox img { max-width:90%; max-height:90%; border-radius:20px; }
+
+    .star { position:fixed; width:4px; height:4px; background:var(--blue); border-radius:50%; pointer-events:none; opacity:0.8; animation: starFly 4s linear forwards; z-index:-1; }
+
+    @keyframes starFly { from{transform:translateY(0); opacity:0.8;} to{transform:translateY(-120vh); opacity:0;} }
+    @keyframes fadeUp { from{opacity:0; transform:translateY(30px);} to{opacity:1; transform:translateY(0);} }
+    @keyframes float { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-15px);} }
+
+    .hobby-container { display:flex; align-items:center; gap:2rem; flex-wrap:wrap; }
+    .hobby-container img { width:200px; border-radius:16px; box-shadow:0 10px 30px rgba(0,0,0,0.15); }
+    .hobby-container .hobby-text { flex:1; min-width:200px; }
+
+    @media (max-width:900px){ .hero-content{grid-template-columns:1fr; text-align:center;} .nav-links{gap:1rem;} .hobby-container{flex-direction:column; align-items:center;} }
+  </style>
+</head>
+<body>
+
+  <div class="lightbox" id="lightbox"><img src=""></div>
+
+  <nav>
+    <div class="nav-container">
+      <div class="logo">Lion Krasniqi</div>
+      <div class="nav-links">
+        <a id="darkToggle">🌙</a>
+        <a href="#about">Über mich</a>
+        <a href="#personal">Personalien</a> <!-- NEU -->
+        <a href="#education">Schulbildung</a>
+        <a href="#languages">Sprachkenntnisse</a>
+        <a href="#hobbies">Hobbies</a>
+        <a href="#skills">Informatik</a>
+        <a href="#zeugnis">Zeugnis</a>
+        <a href="#references">Referenzen</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1>Hallo, ich bin <span>Lion Krasniqi</span></h1>
+        <p>14-jähriger Schüler der 2. Oberstufe mit Leidenschaft fürs Programmieren. <br>Seit der 5. Klasse entwickle ich Spiele und kreative Projekte, lerne ständig Neues und konzentriere mich auf innovative Lösungen.</p>
+      </div>
+      <div class="hero-image"><img src="LebenslaufPFP.png" alt="Profilbild"></div>
+    </div>
+  </div>
+
+  <section id="about">
+    <h2>Über mich</h2>
+    <div class="card">
+      Ich bin 14 Jahre alt, besuche die 2. Oberstufe und programmiere seit der 5. Klasse gerne.<br>
+      Zusammen mit einem Freund habe ich bereits viele kleine Computerspiele und nützliche Programme entwickelt – oft mit großem Erfolg.<br>
+      Programmieren macht mir unglaublich viel Spaß und ich liebe es, neue Dinge auszuprobieren und zu lernen.<br>
+      Meine Konzentration und Ausdauer helfen mir dabei, Projekte Schritt für Schritt umzusetzen und ständig besser zu werden.<br>
+      Mein Ziel ist es, meine Fähigkeiten weiter auszubauen und kreative, funktionale Programme zu entwickeln, die begeistern.
+    </div>
+  </section>
+
+  <!-- NEUE PERSONALIEN SEKTION -->
+  <section id="personal">
+    <h2>Personalien</h2>
+    Name: <span class="text-blue bold">Lion Krasniqi</span> <br>
+    Adresse: <span class="text-violet bold">Escherstrasse 33, 8718 Schänis</span> <br>
+    Telefon: <span class="text-blue bold">+41 78 408 33 74</span> <br>
+    E-Mail: <span class="text-violet bold">krasniqilion@outlook.com</span> <br>
+    Geburtsdatum: <span class="text-blue bold">13.01.2011</span> <br>
+    Geburtsort: <span class="text-violet bold">Männedorf</span> <br>
+    Nationalität: <span class="text-blue bold">Kosovo</span> <br>
+    Aufenthaltsbewilligung: <span class="text-violet bold">Niederlassung C</span> <br>
+  </section>
+  <style>
+  .bold { font-weight: bold; }
+  .text-blue { color: #1e40ff; }
+  .text-violet { color: #0b8d87; }
+</style>
+
+  <section id="education">
+    <h2>Schulbildung</h2>
+    <div class="card">
+     2025-Jetzt : <span class="text-violet bold">2.Real Oberstufe Schänis</span><br>
+      2024-2025 : <span class="text-blue bold">1.Real Oberstufe Schänis</span> <br>
+      2018-2024 : <span class="text-violet bold">1.-6.Klasse Primarschule Weiden, Rapperswil-Jona</span>
+     </div>
+  </section>
+  <style>
+  .bold { font-weight: bold; }
+  .text-blue { color: #1e40ff; }
+  .text-violet { color: #0a86b8; }
+</style>
+
+  <section id="languages">
+    <h2>Sprachkenntnisse</h2>
+    <div class="card">
+    Albanisch<span class="text-blue bold"> : 1.Muttersprache</span> <br>
+     Deutsch<span class="text-violet bold"> : 2.Muttersprache</span> <br>
+     Englisch<span class="text-blue bold"> : Fließend/Gute Kenntnisse</span> <br>
+      Französisch<span class="text-violet bold"> : Schulkenntnisse</span>
+    </div>
+  </section>
+    <style>
+  .bold { font-weight: bold; }
+  .text-blue { color: #5900ff; }
+  .text-violet { color: #1d04fc; }
+</style>
+
+<section id="hobbies" class="hobby-video-section">
+
+  <!-- VIDEO BACKGROUND -->
+  <video autoplay muted loop playsinline>
+    <source src="Hobby.mov" type="video/mp4">
+  </video>
+
+  <!-- INHALT -->
+  <div class="hobby-video-content">
+    <h2>Hobbies & Interessen</h2>
+
+    <div class="hobby-container card">
+      <img src="Fussball.jpg" alt="Sport">
+
+      <div class="hobby-text">
+        <h3>Programmieren</h3>
+        <h4>
+          Mit meinem Freund programmiere ich Apps, Spiele und kreative Projekte.
+        </h4>
+
+        <br>
+
+        <h3>Fussball</h3>
+        <h4>
+          Ich spiele aktuell beim FC Rapperswil-Jona in der 
+          <a href="https://fcrj.ch/mannschaft/junioren-c1/" target="_blank">
+            C1-Mannschaft
+          </a>
+          und trainiere regelmäßig, da mir der Fußball sehr viel Spaß macht.
+        </h4>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  <section id="skills">
+    <h2>Informatikkenntnisse</h2>
+    <div class="card">
+
+    Programmiersprachen:<span class="text-blue bold"> : C#, HTML & CSS(Markup Language),Batchcode </span> <br><br>
+     Entwicklungsumgebungen<span class="text-violet bold"> : Visual Studio Code, Visual Studio 2022, Notepad++</span> <br><br>
+     Tools & Programme<span class="text-blue bold"> : Unity, Blender</span> <br>
+
+    </div>
+  </section>
+    <style>
+  .bold { font-weight: bold; }
+  .text-blue { color: #5900ff; }
+  .text-violet { color: #1d04fc; }
+</style>
+
+
+  <section id="zeugnis">
+    <h2>Zeugnisse:</h2>
+    <div class="card" style="display:flex; flex-direction:column; gap:2rem; align-items:center;">
+      <img src="Zeugnis1.jpeg" alt="Zeugnis 1" class="zeugnis-img zoomable">
+      <img src="Zeugnis.2.jpeg" alt="Zeugnis 2" class="zeugnis-img zoomable">
+      <h1>
+  <a href="AktuellesZeugnis.pdf" target="_blank" style="text-decoration:none; color: royalblue;">
+    Aktuelles Zeugnis
+  </a>
+</h1>
+    </div>
+  </section>
+
+  <section id="references">
+    <h2>Referenzen</h2>
+    <div class="card">
+      Remo Fischli<br>
+      Klassenlehrperson 2. Real<br>
+      079 372 43 91<br>
+      remo.fischli@schuleschaenis.ch
+    </div>
+  </section>
+
+  <script>
+    setInterval(()=>{
+      for(let i=0;i<4;i++){
+        const s=document.createElement('div');
+        s.className='star';
+        s.style.left=Math.random()*window.innerWidth+'px';
+        s.style.bottom='-10px';
+        document.body.appendChild(s);
+        setTimeout(()=>s.remove(),4000);
+      }
+    },3000);
+
+    const darkToggle=document.getElementById('darkToggle');
+    darkToggle.onclick=()=>document.body.classList.toggle('dark');
+
+    const lb=document.getElementById('lightbox');
+    const lbImg=lb.querySelector('img');
+    document.querySelectorAll('.zoomable').forEach(img=>{ img.onclick=()=>{ lbImg.src=img.src; lb.classList.add('active'); }; });
+    lb.onclick=()=>lb.classList.remove('active');
+  </script>
+<style>
+/* === HOBBY VIDEO BACKGROUND === */
+.hobby-video-section {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;  /* leicht */
+}
+
+.hobby-video-section video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  opacity: 0.85; /* Sichtbarkeit vom Video */
+  z-index: 0; 
+
+  
+}
+
+.hobby-video-section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  
+  z-index: 1;
+}
+
+.hobby-video-content {
+  position: relative;
+  z-index: 2;
+}
+</style>
+
+
+</body>
+</html>
